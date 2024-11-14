@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MVCjsonTesti.Models.Treenihistoriarivit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LiikeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sarjat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Painot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Treenihistoria.TreenihistoriaID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LiikeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sarjat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Painot)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Treenihistoria.TreenihistoriaID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TreenihistoriariviID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TreenihistoriariviID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TreenihistoriariviID })
+        </td>
+    </tr>
+}
+
+</table>

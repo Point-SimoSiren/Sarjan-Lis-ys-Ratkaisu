@@ -1,0 +1,70 @@
+﻿@model MVCjsonTesti.Models.Treenihistoriarivit
+
+@{
+    ViewBag.Title = "Uusi sarja";
+}
+
+<h2>Sarjan lisääminen</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Treenihistoriarivit</h4>
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+
+
+            @Html.LabelFor(model => model.TreenihistoriaID, "TreenihistoriaID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <!-- HUOM! ALLAOLEVA ON TEXTBOX!! -->
+
+            
+              
+                <input class="form-control" id="TreenihistoriaID" name="TreenihistoriaID" type="text" value=@ViewBag.TreeniId />
+
+
+            </div>
+            </div>
+        
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LiikeID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LiikeID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LiikeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sarjat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Sarjat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Sarjat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Painot, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Painot, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Painot, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

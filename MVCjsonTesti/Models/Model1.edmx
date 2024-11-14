@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TreenausDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Treenihistoria">
+          <Key>
+            <PropertyRef Name="TreenihistoriaID" />
+          </Key>
+          <Property Name="TreenihistoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pvm" Type="date" />
+        </EntityType>
+        <EntityType Name="Treenihistoriarivit">
+          <Key>
+            <PropertyRef Name="TreenihistoriariviID" />
+          </Key>
+          <Property Name="TreenihistoriariviID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TreenihistoriaID" Type="int" Nullable="false" />
+          <Property Name="LiikeID" Type="int" Nullable="false" />
+          <Property Name="Sarjat" Type="int" Nullable="false" />
+          <Property Name="Painot" Type="decimal" Precision="5" Scale="1" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Treenihistoriarivit_Treenihistoria">
+          <End Role="Treenihistoria" Type="Self.Treenihistoria" Multiplicity="1" />
+          <End Role="Treenihistoriarivit" Type="Self.Treenihistoriarivit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Treenihistoria">
+              <PropertyRef Name="TreenihistoriaID" />
+            </Principal>
+            <Dependent Role="Treenihistoriarivit">
+              <PropertyRef Name="TreenihistoriaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TreenausDBModelStoreContainer">
+          <EntitySet Name="Treenihistoria" EntityType="Self.Treenihistoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Treenihistoriarivit" EntityType="Self.Treenihistoriarivit" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Treenihistoriarivit_Treenihistoria" Association="Self.FK_Treenihistoriarivit_Treenihistoria">
+            <End Role="Treenihistoria" EntitySet="Treenihistoria" />
+            <End Role="Treenihistoriarivit" EntitySet="Treenihistoriarivit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TreenausDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Treenihistoria">
+          <Key>
+            <PropertyRef Name="TreenihistoriaID" />
+          </Key>
+          <Property Name="TreenihistoriaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pvm" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Treenihistoriarivit" Relationship="Self.FK_Treenihistoriarivit_Treenihistoria" FromRole="Treenihistoria" ToRole="Treenihistoriarivit" />
+        </EntityType>
+        <EntityType Name="Treenihistoriarivit">
+          <Key>
+            <PropertyRef Name="TreenihistoriariviID" />
+          </Key>
+          <Property Name="TreenihistoriariviID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TreenihistoriaID" Type="Int32" Nullable="false" />
+          <Property Name="LiikeID" Type="Int32" Nullable="false" />
+          <Property Name="Sarjat" Type="Int32" Nullable="false" />
+          <Property Name="Painot" Type="Decimal" Precision="5" Scale="1" Nullable="false" />
+          <NavigationProperty Name="Treenihistoria" Relationship="Self.FK_Treenihistoriarivit_Treenihistoria" FromRole="Treenihistoriarivit" ToRole="Treenihistoria" />
+        </EntityType>
+        <Association Name="FK_Treenihistoriarivit_Treenihistoria">
+          <End Role="Treenihistoria" Type="Self.Treenihistoria" Multiplicity="1" />
+          <End Role="Treenihistoriarivit" Type="Self.Treenihistoriarivit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Treenihistoria">
+              <PropertyRef Name="TreenihistoriaID" />
+            </Principal>
+            <Dependent Role="Treenihistoriarivit">
+              <PropertyRef Name="TreenihistoriaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TreenausDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Treenihistoria" EntityType="Self.Treenihistoria" />
+          <EntitySet Name="Treenihistoriarivit" EntityType="Self.Treenihistoriarivit" />
+          <AssociationSet Name="FK_Treenihistoriarivit_Treenihistoria" Association="Self.FK_Treenihistoriarivit_Treenihistoria">
+            <End Role="Treenihistoria" EntitySet="Treenihistoria" />
+            <End Role="Treenihistoriarivit" EntitySet="Treenihistoriarivit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TreenausDBModelStoreContainer" CdmEntityContainer="TreenausDBEntities">
+          <EntitySetMapping Name="Treenihistoria">
+            <EntityTypeMapping TypeName="TreenausDBModel.Treenihistoria">
+              <MappingFragment StoreEntitySet="Treenihistoria">
+                <ScalarProperty Name="TreenihistoriaID" ColumnName="TreenihistoriaID" />
+                <ScalarProperty Name="Pvm" ColumnName="Pvm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Treenihistoriarivit">
+            <EntityTypeMapping TypeName="TreenausDBModel.Treenihistoriarivit">
+              <MappingFragment StoreEntitySet="Treenihistoriarivit">
+                <ScalarProperty Name="TreenihistoriariviID" ColumnName="TreenihistoriariviID" />
+                <ScalarProperty Name="TreenihistoriaID" ColumnName="TreenihistoriaID" />
+                <ScalarProperty Name="LiikeID" ColumnName="LiikeID" />
+                <ScalarProperty Name="Sarjat" ColumnName="Sarjat" />
+                <ScalarProperty Name="Painot" ColumnName="Painot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

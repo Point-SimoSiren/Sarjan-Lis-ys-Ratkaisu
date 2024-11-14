@@ -1,0 +1,56 @@
+﻿@model MVCjsonTesti.Models.Treenihistoriarivit
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Treenihistoriarivit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LiikeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LiikeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sarjat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sarjat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Painot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Painot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Treenihistoria.TreenihistoriaID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Treenihistoria.TreenihistoriaID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

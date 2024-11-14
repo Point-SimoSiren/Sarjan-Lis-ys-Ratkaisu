@@ -1,0 +1,50 @@
+﻿@model MVCjsonTesti.Models.Treenihistoriarivit
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Treenihistoriarivit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LiikeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LiikeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sarjat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sarjat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Painot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Painot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Treenihistoria.TreenihistoriaID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Treenihistoria.TreenihistoriaID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TreenihistoriariviID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
