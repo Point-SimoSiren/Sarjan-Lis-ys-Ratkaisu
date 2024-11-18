@@ -1,8 +1,56 @@
 ﻿@model MVCjsonTesti.Models.Treenihistoriarivit
 
+@section scripts
+    {
+    <script>
+        $(document).ready(function () {
+            $("#saveButton").click(function () {
+                
+                // Json objektin luominen
+
+                var test = $("#LiikeID").val()
+                alert(test)
+
+
+                const sarjaData = {
+                    liikeId: $("#LiikeID").val(),
+                    treenihistoriaId: $("#TreenihistoriaID").val(),
+                    sarjat: $("#Sarjat").val(),
+                    painot: $("#Painot").val(),
+                };
+
+                $.ajax({
+                    url: '/Treenihistoria/Sarja',
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(sarjaData),
+                    success: function (response) {
+                        if (response.success) {
+                            alert(response.message);
+                            window.location.href = '/Treenihistoriarivit/Index?treeniId=' + $("#TreenihistoriaID").val();
+                        } else {
+                            alert("Error: " + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX Error:", error);
+                    }
+                });
+            });
+        });</script>
+
+
+
+}
+
+
+
+
 @{
     ViewBag.Title = "Uusi sarja";
 }
+
+
 
 <h2>Sarjan lisääminen</h2>
 
@@ -23,8 +71,8 @@
                 <!-- HUOM! INPUT -->
                 <input class="form-control" id="TreenihistoriaID" name="TreenihistoriaID" type="text" value=@ViewBag.TreeniId disabled />
             </div>
-            </div>
-        
+        </div>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.LiikeID, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -52,7 +100,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="button" id="saveButton" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>

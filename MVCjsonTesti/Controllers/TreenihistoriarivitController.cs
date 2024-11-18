@@ -14,12 +14,29 @@ namespace MVCjsonTesti.Controllers
     {
         private TreenausDBEntities db = new TreenausDBEntities();
 
+
+
+        // ----------- MUUTETTU -----------------------
+
         // GET: Treenihistoriarivit
-        public ActionResult Index()
+        public ActionResult Index(int? treeniId)
         {
-            var treenihistoriarivit = db.Treenihistoriarivit.Include(t => t.Treenihistoria);
-            return View(treenihistoriarivit.ToList());
+            if (treeniId == null)
+            {
+                var treenihistoriarivit = db.Treenihistoriarivit.Include(t => t.Treenihistoria);
+                return View(treenihistoriarivit.ToList());
+            }
+            else
+            {
+                var treenihistoriarivit = db.Treenihistoriarivit.Where(x => x.TreenihistoriaID == treeniId ).Include(t => t.Treenihistoria);
+                return View(treenihistoriarivit.ToList());
+            }
+
+       
         }
+
+
+
 
         // GET: Treenihistoriarivit/Details/5
         public ActionResult Details(int? id)

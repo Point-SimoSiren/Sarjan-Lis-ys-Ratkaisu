@@ -25,23 +25,40 @@ namespace MVCjsonTesti.Controllers
             return View();
         }
 
-      
+
 
         // ----------- SARJAN LISÄYS HTTP POST -------------------------------
 
-     
+
+
         [HttpPost]
-        public ActionResult Sarja(Treenihistoriarivit treenihistoriarivit)
+        public JsonResult Sarja(Treenihistoriarivit treenihistoriarivit)
         {
-          
+            if (treenihistoriarivit != null)
+            {
                 db.Treenihistoriarivit.Add(treenihistoriarivit);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { success = true, message = "Sarja tallennettu!" });
+            }
 
+            return Json(new { success = false, message = "Virhe" });
         }
+
+   
+
+
+        //[HttpPost]
+        //public ActionResult Sarja(Treenihistoriarivit treenihistoriarivit)
+        //{
+        //        db.Treenihistoriarivit.Add(treenihistoriarivit);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //}
 
 
         //----------------------------------------------------------------------------------------------------
+
+
 
 
 
@@ -50,6 +67,11 @@ namespace MVCjsonTesti.Controllers
         {
             return View(db.Treenihistoria.ToList());
         }
+
+
+
+
+
 
         // GET: Treenihistoria/Details/5
         public ActionResult Details(int? id)
